@@ -34,7 +34,7 @@ const projects = [
       "Estudo comparativo da performance das três principais cloud do mercado, usando Node.js e K6 para testes de carga e Grafana para visualização das métricas (TCC - UNICAP).",
     image: "/faas-img.png?height=400&width=600",
     tags: ["Node.js", "AWS Lambda", "GCP Functions", "Azure Functions", "K6", "Grafana"],
-    link: "https://github.com/djalmahenry/multicloud-serverless",
+    link: "https://github.com/DjalmaHenry/multicloud-api-nodejs",
   },
 ]
 
