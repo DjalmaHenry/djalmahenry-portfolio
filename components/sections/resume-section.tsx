@@ -6,7 +6,7 @@ import { Download, FileText } from "lucide-react"
 
 export function ResumeSection() {
   return (
-    <section className="py-16 bg-gradient-to-r from-primary/5 to-secondary/10">
+    <section className="py-8 bg-gradient-to-r from-primary/5 to-secondary/10">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

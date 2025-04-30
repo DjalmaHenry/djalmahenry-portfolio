@@ -1,7 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Mona_Sans as FontSans } from "next/font/google"
-import localFont from "next/font/local"
+import { Mona_Sans as FontSans, Content as FontHeading } from "next/font/google"
 import "./globals.css"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -15,10 +14,12 @@ const fontSans = FontSans({
   variable: "--font-sans",
 })
 
-// Carregando a fonte Clash Display para títulos
-const fontHeading = localFont({
-  src: "./fonts/ClashDisplay-Variable.woff2",
+// Corrigindo a importação da fonte Bricolage Grotesque
+const fontHeading = FontHeading({
+  subsets: ["latin"],
   variable: "--font-heading",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 })
 
 export const metadata: Metadata = {

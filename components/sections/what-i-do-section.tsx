@@ -33,7 +33,7 @@ const services = [
 
 export function WhatIDoSection() {
   return (
-    <section id="what-i-do" className="section-padding bg-secondary/30">
+    <section id="what-i-do" className="section-padding bg-secondary/30 pt-12">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
