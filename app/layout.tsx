@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Mona_Sans as FontSans, Content as FontHeading } from "next/font/google"
+import { Bricolage_Grotesque, Mona_Sans } from "next/font/google"
 import "./globals.css"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -9,15 +9,16 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Suspense } from "react"
 
-const fontSans = FontSans({
+const fontSans = Mona_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
 })
 
-// Corrigindo a importação da fonte Bricolage Grotesque
-const fontHeading = FontHeading({
+// Configuração correta da fonte Bricolage Grotesque
+const fontHeading = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-heading",
+  // Incluindo vários pesos para maior flexibilidade
   weight: ["400", "500", "600", "700"],
   display: "swap",
 })

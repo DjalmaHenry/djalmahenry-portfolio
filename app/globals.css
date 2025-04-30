@@ -66,6 +66,12 @@
   }
 }
 
+/* Configurações específicas para a fonte Bricolage Grotesque */
+.font-heading {
+  font-optical-sizing: auto;
+  font-variation-settings: "wdth" 100;
+}
+
 .gradient-text {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400;
 }
