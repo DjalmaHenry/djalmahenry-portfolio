@@ -17,7 +17,7 @@ const fontSans = FontSans({
 
 // Carregando a fonte Clash Display para títulos
 const fontHeading = localFont({
-  src: "../public/fonts/ClashDisplay-Variable.woff2",
+  src: "./fonts/ClashDisplay-Variable.woff2",
   variable: "--font-heading",
 })
 
