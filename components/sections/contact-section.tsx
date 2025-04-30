@@ -17,7 +17,7 @@ const formSchema = z.object({
     message: "O nome deve ter pelo menos 2 caracteres.",
   }),
   email: z.string().email({
-    message: "Por favor, insira um email válido.",
+    message: "Por favor, insira um e-mail válido.",
   }),
   message: z.string().min(10, {
     message: "A mensagem deve ter pelo menos 10 caracteres.",
@@ -101,7 +101,7 @@ export function ContactSection() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email</FormLabel>
+                          <FormLabel>E-mail</FormLabel>
                           <FormControl>
                             <Input placeholder="seu.email@exemplo.com" {...field} />
                           </FormControl>
@@ -175,7 +175,7 @@ export function ContactSection() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Email</p>
+                  <p className="text-sm text-muted-foreground">E-mail</p>
                   <p className="font-medium">contato@djalmalima.dev</p>
                 </div>
               </li>

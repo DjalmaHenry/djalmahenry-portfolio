@@ -11,8 +11,8 @@ const experiences = [
     position: "Desenvolvedor Full Stack",
     period: "2021 - Atual",
     description:
-      "Desenvolvimento de dashboards interativos, implementação de backend com NestJS, arquitetura de microsserviços e integração com Google Cloud Platform.",
-    technologies: ["Angular", "NestJS", "GCP", "Docker", "PostgreSQL"],
+      "Desenvolvimento de dashboards interativos com Angular e React, implementação de backend com NestJS, arquitetura de microsserviços e integração com Google Cloud Platform.",
+    technologies: ["Angular", "React", "NestJS", "TypeScript", "Google Cloud/Firebase", "Jasmine", "Jest", "Bitbucket Pipelines"],
   },
   {
     company: "Unicap Icam TECH",
@@ -20,7 +20,7 @@ const experiences = [
     period: "2020 - 2021",
     description:
       "Pesquisa científica com Python e OpenCV para desenvolvimento de soluções de visão computacional e processamento de imagens.",
-    technologies: ["Python", "OpenCV", "TensorFlow", "Jupyter", "Git"],
+    technologies: ["Python", "OpenCV", "Figma"],
   },
   {
     company: "RedLub Recioleo",
@@ -28,7 +28,7 @@ const experiences = [
     period: "2019 - 2020",
     description:
       "Desenvolvimento de site institucional e landing pages com WordPress, otimização de SEO e implementação de estratégias de marketing digital.",
-    technologies: ["WordPress", "PHP", "JavaScript", "CSS", "SEO"],
+    technologies: ["WordPress", "PHP", "Elementor", "Figma"],
   },
 ]
 
@@ -85,7 +85,7 @@ export function ExperienceSection() {
           <div className="mt-12 text-center">
             <p className="text-lg mb-6">Procurando um profissional com experiência comprovada para sua equipe?</p>
             <a
-              href="https://wa.me/5585984110301"
+              href="https://wa.me/message/MGFIOCP73NHXI1"
               target="_blank"
               rel="noopener noreferrer"
               className="cta-button-primary"

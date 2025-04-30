@@ -72,7 +72,7 @@ export function WhatIDoSection() {
               Procurando um desenvolvedor que entregue resultados consistentes e de alta qualidade?
             </p>
             <a
-              href="https://wa.me/5585984110301"
+              href="https://wa.me/message/MGFIOCP73NHXI1"
               target="_blank"
               rel="noopener noreferrer"
               className="cta-button-primary"

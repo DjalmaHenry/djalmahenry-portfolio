@@ -51,14 +51,14 @@ export function Header() {
               </Link>
             ))}
             <Button asChild size="sm" className="ml-2">
-              <Link href="https://wa.me/5585984110301" target="_blank" rel="noopener noreferrer">
+              <Link href="https://wa.me/message/MGFIOCP73NHXI1" target="_blank" rel="noopener noreferrer">
                 <Phone className="mr-2 h-4 w-4" /> WhatsApp
               </Link>
             </Button>
             <Button asChild size="sm" variant="outline" className="ml-2">
-              <Link href="/cv-djalma-henry.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="/curriculo-djalma-henry.pdf" download>
                 <Download className="mr-2 h-4 w-4" /> Currículo
-              </Link>
+              </a>
             </Button>
           </nav>
 
@@ -87,7 +87,7 @@ export function Header() {
             ))}
             <Button asChild className="mt-2">
               <Link
-                href="https://wa.me/5585984110301"
+                href="https://wa.me/message/MGFIOCP73NHXI1"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
@@ -96,14 +96,13 @@ export function Header() {
               </Link>
             </Button>
             <Button asChild variant="outline" className="mt-2">
-              <Link
-                href="/cv-djalma-henry.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
+              <a
+                href="/curriculo-djalma-henry.pdf"
+                download
                 onClick={() => setIsOpen(false)}
               >
                 <Download className="mr-2 h-4 w-4" /> Currículo
-              </Link>
+              </a>
             </Button>
           </div>
         </div>

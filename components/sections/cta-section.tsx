@@ -23,7 +23,7 @@ export function CtaSection() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link
-              href="https://wa.me/5585984110301"
+              href="https://wa.me/message/MGFIOCP73NHXI1"
               target="_blank"
               rel="noopener noreferrer"
               className="cta-button-primary text-lg py-4 px-8"
@@ -41,7 +41,7 @@ export function CtaSection() {
           </div>
 
           <div className="text-muted-foreground">
-            <p>Email: contato@djalmahenry.com</p>
+            <p>E-mail: contato@djalmahenry.com</p>
             <p>Telefone: (85) 98411-0301</p>
             <p>Fortaleza/CE</p>
           </div>

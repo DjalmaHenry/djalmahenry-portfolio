@@ -14,8 +14,8 @@ const projects = [
     title: "Internship Manager",
     description:
       "Plataforma de gestão de estagiários desenvolvida para a UNICAP, facilitando o acompanhamento, avaliação e comunicação entre supervisores e estagiários.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["React", "Node.js", "MongoDB", "Express"],
+    image: "/internship-img.png?height=400&width=600",
+    tags: ["React", "TypeScript", "Styled Components", "Node.js", "Express", "MySQL"],
     link: "https://github.com/djalmahenry/internship-manager",
   },
   {
@@ -23,17 +23,17 @@ const projects = [
     title: "Daily Journey",
     description:
       "Aplicativo de produtividade com sistema Kanban para gerenciamento de tarefas diárias, incluindo métricas de produtividade e lembretes personalizados.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["React Native", "Firebase", "Redux", "Styled Components"],
+    image: "/daily-journey-img.png?height=400&width=600",
+    tags: ["React Native", "TypeScript", "Firebase", "Expo", "Native Base"],
     link: "https://github.com/djalmahenry/daily-journey",
   },
   {
     id: 3,
-    title: "Multicloud Serverless",
+    title: "Análise de serviços de FaaS",
     description:
-      "Estudo comparativo de APIs com Node.js, utilizando K6 para testes de carga e Grafana para visualização de métricas em diferentes provedores de nuvem.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["Node.js", "AWS Lambda", "GCP Functions", "K6", "Grafana"],
+      "Estudo comparativo da performance das três principais cloud do mercado, usando Node.js e K6 para testes de carga e Grafana para visualização das métricas (TCC - UNICAP).",
+    image: "/faas-img.png?height=400&width=600",
+    tags: ["Node.js", "AWS Lambda", "GCP Functions", "Azure Functions", "K6", "Grafana"],
     link: "https://github.com/djalmahenry/multicloud-serverless",
   },
 ]
@@ -68,7 +68,7 @@ export function ProjectsSection() {
                 onMouseLeave={() => setHoveredId(null)}
               >
                 <Card className="h-full flex flex-col card-hover">
-                  <div className="relative aspect-video overflow-hidden">
+                  <div className="relative aspect-video overflow-hidden rounded-t-xl">
                     <Image
                       src={project.image || "/placeholder.svg"}
                       alt={project.title}

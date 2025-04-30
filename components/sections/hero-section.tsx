@@ -54,7 +54,6 @@ export function HeroSection() {
 
       {/* Decorative elements */}
       <div className="absolute top-20 right-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl"></div>
 
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -71,7 +70,7 @@ export function HeroSection() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
               >
-                Sua próxima <span className="gradient-text">contratação estratégica</span> em tecnologia full stack.
+                Sua próxima <span className="gradient-text">contratação estratégica</span> em tecnologia Full Stack.
               </motion.h1>
               <motion.p
                 className="mt-6 text-xl md:text-2xl text-muted-foreground"
@@ -90,7 +89,7 @@ export function HeroSection() {
               transition={{ delay: 0.6, duration: 0.8 }}
             >
               <Link
-                href="https://wa.me/5585984110301"
+                href="https://wa.me/message/MGFIOCP73NHXI1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="cta-button-primary"
@@ -114,11 +113,11 @@ export function HeroSection() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="relative hidden lg:block"
           >
-            <div className="relative w-full h-[500px] animate-float">
+            <div className="relative pl-16 w-full h-[550px] animate-float">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl blur-3xl"></div>
               <div className="relative bg-card border rounded-2xl overflow-hidden h-full gradient-border">
                 <Image
-                  src="/placeholder.svg?height=500&width=500"
+                  src="/djalmahenry.jpg?height=500&width=500"
                   alt="Djalma Henry - Desenvolvedor Full Stack Sênior"
                   width={500}
                   height={500}
@@ -132,7 +131,7 @@ export function HeroSection() {
       </div>
 
       <motion.div
-        className="absolute bottom-24 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.8 }}

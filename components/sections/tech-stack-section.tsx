@@ -11,7 +11,7 @@ const techCategories = [
   },
   {
     name: "Backend",
-    technologies: ["Node.js", "NestJS", "Ruby on Rails", "PHP", "Express", "GraphQL", "REST API"],
+    technologies: ["Node.js", "NestJS", "Ruby on Rails", "PHP", "Java", "Python", "Go", "C#", "C++"],
   },
   {
     name: "DevOps",
@@ -19,15 +19,15 @@ const techCategories = [
   },
   {
     name: "Cloud",
-    technologies: ["GCP", "AWS", "Azure", "Firebase", "Vercel", "Netlify", "Heroku"],
+    technologies: ["Google Cloud/Firebase", "AWS", "Azure", "Vercel", "Heroku"],
   },
   {
     name: "Testes",
-    technologies: ["Jest", "Jasmine", "Selenium", "Cypress", "Testing Library", "Mocha", "Chai"],
+    technologies: ["Jest", "Jasmine", "Selenium", "K6"],
   },
   {
     name: "Banco de Dados",
-    technologies: ["MongoDB", "PostgreSQL", "Supabase", "MySQL", "Redis", "Firebase Realtime DB", "SQLite"],
+    technologies: ["MongoDB", "PostgreSQL", "Supabase", "MySQL", "Redis"],
   },
 ]
 

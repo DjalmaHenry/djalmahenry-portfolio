@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Link from "next/link"
 import { Download, FileText } from "lucide-react"
 
 export function ResumeSection() {
@@ -22,10 +21,9 @@ export function ResumeSection() {
             </p>
           </div>
 
-          <Link
-            href="/cv-djalma-henry.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+          <a
+            href="/curriculo-djalma-henry.pdf"
+            download
             className="flex items-center gap-3 bg-primary hover:bg-primary/90 text-white font-medium py-4 px-6 rounded-lg transition-all duration-300"
           >
             <FileText className="h-5 w-5" />
@@ -34,7 +32,7 @@ export function ResumeSection() {
               <span className="font-bold">Baixar Currículo</span>
             </span>
             <Download className="h-5 w-5 ml-2" />
-          </Link>
+          </a>
         </motion.div>
       </div>
     </section>

@@ -13,7 +13,7 @@ const languages = [
   {
     language: "Inglês",
     level: "Avançado",
-    proficiency: 85,
+    proficiency: 60,
   },
 ]
 
