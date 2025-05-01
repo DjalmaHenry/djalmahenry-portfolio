@@ -78,7 +78,7 @@ export function HeroSection() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
-                Mais de 5 anos entregando soluções escaláveis, inteligentes e sustentáveis para empresas inovadoras.
+                Há 5 anos entregando soluções escaláveis, inteligentes e sustentáveis para empresas inovadoras.
               </motion.p>
             </div>
 
