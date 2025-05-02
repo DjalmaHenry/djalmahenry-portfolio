@@ -42,7 +42,7 @@ export function Footer() {
                 </Link>
               </Button>
               <Button variant="ghost" size="icon" asChild>
-                <Link href="tel:+5585984110301" aria-label="Telefone">
+                <Link href="https://wa.me/message/MGFIOCP73NHXI1" aria-label="Telefone">
                   <Phone className="h-5 w-5" />
                 </Link>
               </Button>
@@ -50,7 +50,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 text-center text-sm text-muted-foreground">
-          <p>E-mail: contato@djalmahenry.com | Telefone: (85) 98411-0301 | Fortaleza/CE</p>
+          <p>E-mail: contato@djalmahenry.com | Telefone: (85) 99192-7780 | Fortaleza/CE</p>
           <p className="mt-2">&copy; {new Date().getFullYear()} Djalma Henry. Todos os direitos reservados.</p>
         </div>
       </div>

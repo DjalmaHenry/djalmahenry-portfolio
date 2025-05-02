@@ -42,7 +42,7 @@ export function CtaSection() {
 
           <div className="text-muted-foreground">
             <p>E-mail: contato@djalmahenry.com</p>
-            <p>Telefone: (85) 98411-0301</p>
+            <p>Telefone: (85) 99192-7780</p>
             <p>Fortaleza/CE</p>
           </div>
         </motion.div>
