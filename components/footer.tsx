@@ -42,7 +42,7 @@ export function Footer() {
                 </Link>
               </Button>
               <Button variant="ghost" size="icon" asChild>
-                <Link href="https://wa.me/message/MGFIOCP73NHXI1" aria-label="Telefone">
+                <Link href="https://wa.me/message/MGFIOCP73NHXI1" target="_blank" aria-label="Telefone">
                   <Phone className="h-5 w-5" />
                 </Link>
               </Button>
