@@ -12,7 +12,7 @@ const languages = [
   },
   {
     language: "Inglês",
-    level: "Avançado",
+    level: "B1 - Intermediário",
     proficiency: 60,
   },
 ]
