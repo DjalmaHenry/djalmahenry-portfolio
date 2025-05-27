@@ -11,7 +11,7 @@ const experiences = [
     position: "Desenvolvedor Full Stack",
     period: "2021 - Atual",
     description:
-      "Desenvolvimento de dashboards interativos com Angular e React, implementação de backend com NestJS, arquitetura de microsserviços e integração com Google Cloud Platform.",
+      "Atuação no desenvolvimento de dashboards interativos com Angular e React, destinados à criação, gestão de níveis de jogos e acompanhamento de métricas de desempenho dos jogadores.\n\nResponsável pela construção de APIs e microsserviços em NestJS, garantindo integrações robustas e eficientes entre as ferramentas internas e a engine do jogo.\n\nForte atuação em arquitetura de microsserviços, com utilização da Google Cloud Platform (GCP), assegurando escalabilidade, segurança e alta disponibilidade.\n\nAplicação constante de boas práticas de engenharia de software, incluindo Clean Code, Design Patterns e testes automatizados — com Jasmine no front-end e Jest no back-end — assegurando a qualidade e a estabilidade das soluções.\n\nParticipação ativa em times ágeis, com utilização de Scrum e Kanban, contribuindo para o planejamento, execução e entrega contínua de funcionalidades.\n\nAtuação também voltada para a análise de dados e web analytics, com foco na melhoria contínua da usabilidade e da experiência das ferramentas desenvolvidas.",
     technologies: ["Angular", "React", "NestJS", "TypeScript", "Google Cloud/Firebase", "Jasmine", "Jest", "Bitbucket Pipelines"],
   },
   {
