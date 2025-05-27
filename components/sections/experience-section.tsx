@@ -67,7 +67,11 @@ export function ExperienceSection() {
                       <p className="text-muted-foreground mt-2 md:mt-0">{experience.period}</p>
                     </div>
 
-                    <p className="mb-4">{experience.description}</p>
+                    <div className="mb-4 space-y-4">
+                      {experience.description.split('\n\n').map((paragraph, i) => (
+                        <p key={i}>{paragraph}</p>
+                      ))}
+                    </div>
 
                     <div className="flex flex-wrap gap-2">
                       {experience.technologies.map((tech) => (
