@@ -24,14 +24,14 @@ const fontHeading = Bricolage_Grotesque({
 })
 
 export const metadata: Metadata = {
-  title: "Djalma Henry | Desenvolvedor Full Stack Sênior",
+  title: "Djalma Henry | Desenvolvedor Full Stack",
   description:
     "Sua próxima contratação estratégica em tecnologia Full Stack. Há 5 anos entregando soluções escaláveis, inteligentes e sustentáveis para empresas inovadoras.",
   openGraph: {
     type: "website",
     locale: "pt_BR",
     url: "https://djalmahenry.com",
-    title: "Djalma Henry | Desenvolvedor Full Stack Sênior",
+    title: "Djalma Henry | Desenvolvedor Full Stack",
     description:
       "Sua próxima contratação estratégica em tecnologia Full Stack. Há 5 anos entregando soluções escaláveis, inteligentes e sustentáveis para empresas inovadoras.",
     siteName: "Djalma Henry",

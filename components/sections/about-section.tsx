@@ -81,7 +81,7 @@ export function AboutSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              Sou um desenvolvedor de software sênior com mais de 10 anos de experiência, especializado em criar
+              Sou um desenvolvedor de software com mais de 5 anos de experiência, especializado em criar
               soluções escaláveis e de alta performance. Minha jornada inclui trabalhar com startups inovadoras e
               empresas estabelecidas, sempre buscando aplicar as melhores práticas de engenharia de software.
             </motion.p>

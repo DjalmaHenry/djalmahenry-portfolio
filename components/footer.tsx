@@ -11,7 +11,7 @@ export function Footer() {
             <Link href="/" className="text-xl font-heading font-bold gradient-text">
               Djalma Henry
             </Link>
-            <p className="mt-2 text-sm text-muted-foreground">Desenvolvedor Full Stack Sênior</p>
+            <p className="mt-2 text-sm text-muted-foreground">Desenvolvedor Full Stack</p>
           </div>
 
           <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">

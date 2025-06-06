@@ -118,7 +118,7 @@ export function HeroSection() {
               <div className="relative bg-card border rounded-2xl overflow-hidden h-full gradient-border">
                 <Image
                   src="/djalmahenry.jpg?height=500&width=500"
-                  alt="Djalma Henry - Desenvolvedor Full Stack Sênior"
+                  alt="Djalma Henry - Desenvolvedor Full Stack"
                   width={500}
                   height={500}
                   className="object-cover w-full h-full"
