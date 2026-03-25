@@ -777,7 +777,7 @@ export function ImmersivePortfolioPage() {
                 <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#0d0906]">
                   <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(243,196,113,0.22),_transparent_38%),linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0))]" />
                   <Image
-                    src="/djalmahenry.jpg"
+                    src="/djalmahenry.jpeg"
                     alt="Djalma Henry"
                     width={720}
                     height={920}

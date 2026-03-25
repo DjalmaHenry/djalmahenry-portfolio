@@ -117,7 +117,7 @@ export function HeroSection() {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl blur-3xl"></div>
               <div className="relative bg-card border rounded-2xl overflow-hidden h-full gradient-border">
                 <Image
-                  src="/djalmahenry.jpg?height=500&width=500"
+                  src="/djalmahenry.jpeg?height=500&width=500"
                   alt="Djalma Henry - Desenvolvedor Full Stack"
                   width={500}
                   height={500}
