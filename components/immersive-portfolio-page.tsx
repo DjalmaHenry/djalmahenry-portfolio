@@ -271,7 +271,7 @@ const portfolioCopy = {
       testimonials: [
         {
           name: "Susiane Santos",
-          role: "Designer for Sustainability Transitions",
+          role: "UI/UX Designer @ Manifesto Games",
           quote:
             "Profissional dedicada, séria e em constante aperfeiçoamento, com evolução técnica muito rápida e entregas cada vez mais fortes.",
         },
@@ -283,7 +283,7 @@ const portfolioCopy = {
         },
         {
           name: "Lucas dos Santos Amorim Rego",
-          role: "Engenheiro de Software",
+          role: "Pesquisador Cyber Threat Intelligence @ CESAR",
           quote:
             "Destaca-se pelo comprometimento em aprender, crescer e colaborar bem, mantendo disciplina e motivação para superar desafios.",
         },
@@ -545,7 +545,7 @@ const portfolioCopy = {
       testimonials: [
         {
           name: "Susiane Santos",
-          role: "Designer for Sustainability Transitions",
+          role: "UI/UX Designer @ Manifesto Games",
           quote:
             "A dedicated and serious professional, constantly improving, with very fast technical evolution and increasingly strong deliveries.",
         },
@@ -557,7 +557,7 @@ const portfolioCopy = {
         },
         {
           name: "Lucas dos Santos Amorim Rego",
-          role: "Software Engineer",
+          role: "Cyber Threat Intelligence Researcher @ CESAR",
           quote:
             "Stands out for the commitment to learn, grow, and collaborate well, with discipline and motivation to overcome challenges.",
         },
