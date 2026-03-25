@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from "@/components/analytics"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { LanguageProvider } from "@/components/language-provider"
 import { Suspense } from "react"
 
 const fontSans = Mona_Sans({
@@ -26,17 +27,17 @@ const fontHeading = Bricolage_Grotesque({
 export const metadata: Metadata = {
   title: "Djalma Henry | Desenvolvedor Full Stack",
   description:
-    "Sua próxima contratação estratégica em tecnologia Full Stack. Há 5 anos entregando soluções escaláveis, inteligentes e sustentáveis para empresas inovadoras.",
+    "Desenvolvedor Full Stack especializado em microsserviços, cloud e aplicações escaláveis, com experiência em Node.js, Python, NestJS, React e Vue.",
   openGraph: {
     type: "website",
     locale: "pt_BR",
     url: "https://djalmahenry.com",
     title: "Djalma Henry | Desenvolvedor Full Stack",
     description:
-      "Sua próxima contratação estratégica em tecnologia Full Stack. Há 5 anos entregando soluções escaláveis, inteligentes e sustentáveis para empresas inovadoras.",
+      "Desenvolvedor Full Stack especializado em microsserviços, cloud e aplicações escaláveis, com experiência em Node.js, Python, NestJS, React e Vue.",
     siteName: "Djalma Henry",
   },
-    generator: 'v0.dev'
+  generator: "v0.dev",
 }
 
 export default function RootLayout({
@@ -48,13 +49,15 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable, fontHeading.variable)}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <div className="relative flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">
-              <Suspense>{children}</Suspense>
-            </main>
-            <Footer />
-          </div>
+          <LanguageProvider>
+            <div className="relative flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">
+                <Suspense>{children}</Suspense>
+              </main>
+              <Footer />
+            </div>
+          </LanguageProvider>
           <Analytics />
         </ThemeProvider>
       </body>
