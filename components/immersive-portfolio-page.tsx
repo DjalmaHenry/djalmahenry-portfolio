@@ -102,7 +102,7 @@ const portfolioCopy = {
           impact:
             "Esse trabalho apoia diretamente a eficiência operacional de milhares de sellers, reduz gargalos logísticos e amplia a confiabilidade dos fluxos centrais da plataforma.",
           keywords: ["Fulfillment", "Microsserviços", "IA aplicada", "CI/CD", "Observabilidade", "Jest", "TypeScript"],
-          related: "Onboarding Luizalabs",
+          related: "Portal de logística do Seller",
         },
         {
           company: "Manifesto Games",
@@ -376,7 +376,7 @@ const portfolioCopy = {
           impact:
             "This work directly supports the operational efficiency of thousands of sellers, reduces logistics bottlenecks, and increases the reliability of core platform flows.",
           keywords: ["Fulfillment", "Microservices", "Applied AI", "CI/CD", "Observability", "Jest", "TypeScript"],
-          related: "Luizalabs onboarding",
+          related: "Seller logistics portal",
         },
         {
           company: "Manifesto Games",
