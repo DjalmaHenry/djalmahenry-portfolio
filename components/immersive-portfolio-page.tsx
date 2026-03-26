@@ -300,7 +300,7 @@ const portfolioCopy = {
           name: "Susiane Santos",
           role: "UI/UX Designer @ Manifesto Games",
           quote:
-            "Profissional dedicada, séria e em constante aperfeiçoamento, com evolução técnica muito rápida e entregas cada vez mais fortes.",
+            "Profissional dedicado, sério e em constante aperfeiçoamento, com evolução técnica muito rápido e entregas cada vez mais fortes.",
         },
         {
           name: "Fernando Bellelis",
