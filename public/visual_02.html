@@ -1,0 +1,662 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500&family=Playfair+Display:wght@400;500&display=swap');
+
+  :root {
+    --ink:    #0b0906;
+    --bg0:    #0e0c09;
+    --bg1:    #141009;
+    --bg2:    #1c1610;
+    --bg3:    #251d13;
+    --bg4:    #2e2418;
+    --gold:   #c8a060;
+    --gold2:  #a07840;
+    --amber:  #d8b070;
+    --amber2: #e8c888;
+    --warm:   #f0d8a8;
+    --muted:  #806848;
+    --dim:    #504030;
+    --faint:  #2e2418;
+    --mono:   'DM Mono', 'Courier New', monospace;
+    --serif:  'Playfair Display', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; margin: 0; background: transparent; overflow: hidden; }
+  body { display: flex; align-items: stretch; justify-content: center; }
+
+  .canvas {
+    width: 100%;
+    height: 100%;
+    background: var(--bg0);
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+    font-family: var(--mono);
+  }
+
+  /* ── noise texture overlay ── */
+  .canvas::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 100;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.022;
+    pointer-events: none;
+  }
+
+  /* ── ambient light ── */
+  .amb {
+    position: absolute; pointer-events: none; z-index: 0;
+    border-radius: 50%;
+    filter: blur(50px);
+  }
+  .amb-1 { width:200px;height:150px; top:-30px; left:-20px;  background:rgba(200,160,80,0.07); }
+  .amb-2 { width:160px;height:120px; bottom:20px; right:-10px; background:rgba(180,130,60,0.06); }
+  .amb-3 { width:100px;height:100px; top:220px; left:50%;  background:rgba(200,150,70,0.04); transform:translateX(-50%); }
+
+  /* ── grid ── */
+  .grid-overlay {
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    position:relative; z-index:2;
+    padding: 26px 22px 18px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ─────────────────────────────────────────
+     ZONE 1 · INTERFACE PREVIEW
+  ───────────────────────────────────────── */
+  .zone-ui {
+    flex-shrink: 0;
+  }
+
+  /* eyebrow */
+  .eyebrow {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  }
+  .eyebrow-line { flex:1; height:1px; background:linear-gradient(to right, var(--gold2), transparent); opacity:0.3; }
+  .eyebrow-text { font-size:7px; color:var(--muted); letter-spacing:0.22em; text-transform:uppercase; white-space:nowrap; }
+  .eyebrow-dot  { width:3px;height:3px;border-radius:50%;background:var(--gold2);opacity:0.6; }
+
+  /* fake browser chrome */
+  .browser {
+    background: var(--bg2);
+    border: 1px solid rgba(200,160,80,0.13);
+    border-radius: 9px;
+    overflow: hidden;
+  }
+  .browser-bar {
+    display:flex; align-items:center; gap:5px;
+    padding: 6px 10px;
+    background: var(--bg3);
+    border-bottom: 1px solid rgba(200,160,80,0.08);
+  }
+  .b-dot { width:5px;height:5px;border-radius:50%; }
+  .b-dot.r { background:#6a3828;opacity:0.7; }
+  .b-dot.y { background:#6a5428;opacity:0.7; }
+  .b-dot.g { background:#2a5438;opacity:0.7; }
+  .b-url {
+    flex:1; background:var(--bg4); border-radius:3px;
+    padding:2px 8px; margin:0 6px;
+    font-size:6.5px; color:var(--muted); letter-spacing:0.05em;
+  }
+  .b-icon { font-size:7px; color:var(--dim); }
+
+  /* dashboard content */
+  .dash-content { padding:10px; }
+
+  /* stat row */
+  .stat-row {
+    display:flex; gap:5px; margin-bottom:7px;
+  }
+  .stat-card {
+    flex:1; background:var(--bg3); border:1px solid rgba(200,160,80,0.1);
+    border-radius:6px; padding:6px 7px;
+    position:relative; overflow:hidden;
+  }
+  .stat-card::after {
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(to right, transparent, var(--gold2), transparent);
+    opacity:0.45;
+  }
+  .s-label { font-size:6px; color:var(--muted); letter-spacing:0.12em; text-transform:uppercase; }
+  .s-value { font-size:14px; color:var(--amber); font-weight:500; margin-top:1px; letter-spacing:-0.01em; }
+  .s-delta { font-size:6px; color:var(--gold2); margin-top:1px; }
+
+  /* table component */
+  .data-table {
+    background:var(--bg3); border:1px solid rgba(200,160,80,0.08);
+    border-radius:6px; overflow:hidden;
+  }
+  .dt-header {
+    display:grid; grid-template-columns:1fr 60px 48px;
+    padding:4px 8px;
+    background:var(--bg4); border-bottom:1px solid rgba(200,160,80,0.08);
+  }
+  .dt-col { font-size:6px; color:var(--dim); letter-spacing:0.12em; text-transform:uppercase; }
+  .dt-row {
+    display:grid; grid-template-columns:1fr 60px 48px;
+    padding:4px 8px;
+    border-bottom:1px solid rgba(200,160,80,0.05);
+  }
+  .dt-row:last-child { border-bottom:none; }
+  .dt-cell { font-size:7px; color:var(--muted); letter-spacing:0.04em; }
+  .dt-cell.name { color:var(--gold); }
+  .status-pill {
+    display:inline-block;
+    font-size:5.5px; letter-spacing:0.1em; padding:1px 5px;
+    border-radius:2px;
+  }
+  .pill-ok   { background:rgba(40,80,50,0.4); color:#60a870; border:1px solid rgba(60,120,70,0.3); }
+  .pill-warn { background:rgba(80,60,20,0.4); color:#a89040; border:1px solid rgba(120,90,30,0.3); }
+  .pill-idle { background:rgba(40,40,40,0.4); color:var(--dim);  border:1px solid rgba(80,80,80,0.2); }
+
+  /* ─────────────────────────────────────────
+     DIVIDER
+  ───────────────────────────────────────── */
+  .divider {
+    display:flex; align-items:center; gap:8px;
+    margin: 11px 0;
+  }
+  .div-rule { flex:1; height:1px; background:linear-gradient(to right, transparent, rgba(200,160,80,0.18), transparent); }
+  .div-label { font-size:6.5px; color:var(--dim); letter-spacing:0.2em; text-transform:uppercase; }
+
+  /* ─────────────────────────────────────────
+     ZONE 2 · ARCHITECTURE MAP
+  ───────────────────────────────────────── */
+  .zone-arch {
+    flex-shrink: 0;
+  }
+
+  .arch-map {
+    display:flex; flex-direction:column; align-items:stretch; gap:0;
+    position:relative;
+  }
+
+  /* spine */
+  .arch-map::before {
+    content:'';
+    position:absolute;
+    left:24px; top:8px; bottom:8px; width:1px;
+    background:linear-gradient(to bottom,
+      transparent 0%,
+      rgba(200,160,80,0.25) 15%,
+      rgba(200,160,80,0.2) 85%,
+      transparent 100%
+    );
+  }
+
+  .arch-row {
+    display:flex; align-items:center; gap:0;
+    position:relative;
+  }
+
+  .arch-node {
+    width:10px; height:10px; border-radius:50%;
+    border:1px solid var(--gold2); background:var(--bg0);
+    flex-shrink:0; margin-left:20px; z-index:1;
+    position:relative;
+  }
+  .arch-node.active {
+    background:var(--gold2);
+    box-shadow:0 0 6px rgba(200,160,80,0.5);
+  }
+  .arch-node.active::after {
+    content:'';
+    position:absolute; inset:-4px; border-radius:50%;
+    border:1px solid rgba(200,160,80,0.2);
+  }
+
+  .arch-stem {
+    width:14px; height:1px; flex-shrink:0;
+    background:linear-gradient(to right, var(--gold2), transparent);
+    opacity:0.35;
+  }
+
+  .arch-block {
+    flex:1;
+    background:var(--bg2);
+    border:1px solid rgba(200,160,80,0.11);
+    border-radius:7px;
+    padding:6px 10px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .arch-block.hi {
+    border-color:rgba(200,160,80,0.22);
+    background:var(--bg3);
+  }
+  .ab-name  { font-size:9px; color:var(--amber); letter-spacing:0.06em; }
+  .ab-desc  { font-size:6px; color:var(--muted); margin-top:1px; letter-spacing:0.05em; }
+  .ab-badge {
+    font-size:6px; color:var(--gold2); border:1px solid rgba(200,160,80,0.18);
+    border-radius:2px; padding:1px 5px; letter-spacing:0.1em; white-space:nowrap;
+  }
+
+  .arch-gap {
+    height:3px; margin-left:50px;
+    display:flex; align-items:center; gap:4px;
+  }
+  .gap-arrow { font-size:7px; color:var(--dim); opacity:0.7; }
+  .gap-tag   { font-size:5.5px; color:var(--dim); letter-spacing:0.1em; }
+
+  /* ─────────────────────────────────────────
+     ZONE 3 · OPERATIONS
+  ───────────────────────────────────────── */
+  .zone-ops {
+    flex:1; display:flex; flex-direction:column; gap:5px;
+    padding-top:2px;
+  }
+
+  .ops-row { display:flex; gap:5px; }
+
+  .ops-card {
+    flex:1;
+    background:var(--bg2);
+    border:1px solid rgba(200,160,80,0.1);
+    border-radius:7px;
+    padding:7px 8px;
+    position:relative; overflow:hidden;
+  }
+  .ops-card::before {
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(to right, transparent, var(--gold2), transparent);
+    opacity:0.4;
+  }
+  .ops-label {
+    font-size:6px; color:var(--muted); letter-spacing:0.16em;
+    text-transform:uppercase; margin-bottom:5px;
+  }
+
+  /* pipeline */
+  .pipe { display:flex; align-items:center; gap:2px; }
+  .pipe-seg {
+    flex:1; height:4px; border-radius:1.5px;
+    background:var(--faint);
+  }
+  .pipe-seg.done   { background:var(--gold2); }
+  .pipe-seg.active { background:var(--amber); box-shadow:0 0 5px rgba(200,160,80,0.45); }
+  .pipe-sep { width:3px;height:1px;background:var(--dim);flex-shrink:0; }
+  .pipe-names { display:flex; justify-content:space-between; margin-top:3px; }
+  .pipe-n { font-size:5.5px; color:var(--dim); letter-spacing:0.06em; }
+
+  /* health bars */
+  .hb-row { display:flex; flex-direction:column; gap:3px; }
+  .hb-line { display:flex; align-items:center; gap:5px; }
+  .hb-name { font-size:6.5px; color:var(--muted); width:22px; flex-shrink:0; }
+  .hb-track { flex:1; height:3px; background:var(--faint); border-radius:1.5px; }
+  .hb-fill  { height:100%; border-radius:1.5px; background:linear-gradient(to right, var(--gold2), var(--amber)); }
+  .hb-val   { font-size:6px; color:var(--gold2); width:18px; text-align:right; flex-shrink:0; }
+
+  /* sparkline */
+  .spark { display:flex; align-items:flex-end; gap:2px; height:26px; }
+  .sp-b  { flex:1; border-radius:1px 1px 0 0; background:linear-gradient(to top, var(--gold2), var(--amber)); }
+
+  /* trace lines */
+  .trace { display:flex; flex-direction:column; gap:2px; }
+  .tr-line { display:flex; align-items:center; gap:4px; }
+  .tr-ts   { font-size:5.5px; color:var(--dim); flex-shrink:0; width:24px; }
+  .tr-bar  { height:3px; border-radius:1.5px; background:var(--gold2); opacity:0.5; }
+  .tr-bar.hi { opacity:0.9; background:var(--amber); }
+  .tr-label{ font-size:5.5px; color:var(--muted); margin-left:2px; white-space:nowrap; }
+
+  /* alert feed */
+  .alert-feed { display:flex; flex-direction:column; gap:2px; }
+  .af-item { display:flex; align-items:center; gap:4px; }
+  .af-dot  { width:4px;height:4px;border-radius:50%;flex-shrink:0; }
+  .af-dot.ok   { background:#3a7850; }
+  .af-dot.warn { background:#8a6830; }
+  .af-text { font-size:6.5px; color:var(--muted); letter-spacing:0.04em; }
+  .af-ts   { font-size:5.5px; color:var(--dim); margin-left:auto; }
+
+  /* metrics */
+  .mets { display:flex; justify-content:space-between; }
+  .met-item { text-align:center; }
+  .met-val  { font-size:12px; color:var(--amber); font-weight:500; letter-spacing:-0.01em; }
+  .met-sub  { font-size:5.5px; color:var(--muted); letter-spacing:0.1em; margin-top:1px; }
+
+  /* uptime band */
+  .uptime-band { display:flex; gap:1.5px; height:4px; margin-top:2px; }
+  .ub-seg { flex:1; border-radius:1px; background:var(--faint); }
+  .ub-seg.up { background:var(--gold2); opacity:0.75; }
+  .ub-seg.hi { background:var(--amber); opacity:0.9; }
+  .ub-seg.dn { background:#5a3020; opacity:0.7; }
+
+  /* ── FOOTER ── */
+  .footer {
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:6px;
+    border-top:1px solid rgba(200,160,80,0.08);
+    flex-shrink:0;
+  }
+  .ft-l { font-size:6px; color:var(--dim); letter-spacing:0.16em; }
+  .ft-r { display:flex; align-items:center; gap:4px; }
+  .ft-dot { width:4px;height:4px;border-radius:50%;background:var(--gold2);opacity:0.65; }
+  .ft-r span { font-size:6px; color:var(--muted); letter-spacing:0.12em; }
+
+  /* corner marks */
+  .corner { position:absolute; z-index:3; pointer-events:none; }
+  .corner svg { display:block; }
+</style>
+
+<div class="canvas">
+
+  <!-- ambient -->
+  <div class="amb amb-1"></div>
+  <div class="amb amb-2"></div>
+  <div class="amb amb-3"></div>
+
+  <!-- grid overlay -->
+  <svg class="grid-overlay" viewBox="0 0 360 640" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="200" x2="360" y2="200" stroke="#c8a060" stroke-width="0.3" opacity="0.05"/>
+    <line x1="0" y1="400" x2="360" y2="400" stroke="#c8a060" stroke-width="0.3" opacity="0.04"/>
+    <line x1="180" y1="0" x2="180" y2="640" stroke="#c8a060" stroke-width="0.3" opacity="0.035"/>
+    <!-- corner brackets -->
+    <path d="M22 22 L22 12 L32 12" fill="none" stroke="#c8a060" stroke-width="0.8" opacity="0.2"/>
+    <path d="M338 22 L338 12 L328 12" fill="none" stroke="#c8a060" stroke-width="0.8" opacity="0.2"/>
+    <path d="M22 618 L22 628 L32 628" fill="none" stroke="#c8a060" stroke-width="0.8" opacity="0.2"/>
+    <path d="M338 618 L338 628 L328 628" fill="none" stroke="#c8a060" stroke-width="0.8" opacity="0.2"/>
+    <line x1="22" y1="38" x2="338" y2="38" stroke="#c8a060" stroke-width="0.5" opacity="0.15"/>
+    <line x1="22" y1="602" x2="338" y2="602" stroke="#c8a060" stroke-width="0.5" opacity="0.12"/>
+  </svg>
+
+  <div class="content">
+
+    <!-- ── ZONE 1: UI PREVIEW ── -->
+    <div class="zone-ui">
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        <div class="eyebrow-dot"></div>
+        <span class="eyebrow-text">product interface</span>
+        <div class="eyebrow-dot"></div>
+        <div class="eyebrow-line" style="background:linear-gradient(to left, var(--gold2), transparent);"></div>
+      </div>
+
+      <div class="browser">
+        <div class="browser-bar">
+          <div class="b-dot r"></div>
+          <div class="b-dot y"></div>
+          <div class="b-dot g"></div>
+          <div class="b-url">app.product.io / dashboard</div>
+          <span class="b-icon">⟳</span>
+        </div>
+        <div class="dash-content">
+          <div class="stat-row">
+            <div class="stat-card">
+              <div class="s-label">requests</div>
+              <div class="s-value">1.2k</div>
+              <div class="s-delta">↑ rps</div>
+            </div>
+            <div class="stat-card">
+              <div class="s-label">p95 latency</div>
+              <div class="s-value">38</div>
+              <div class="s-delta">ms</div>
+            </div>
+            <div class="stat-card">
+              <div class="s-label">uptime</div>
+              <div class="s-value">99.9</div>
+              <div class="s-delta">% SLA</div>
+            </div>
+          </div>
+          <div class="data-table">
+            <div class="dt-header">
+              <span class="dt-col">service</span>
+              <span class="dt-col">region</span>
+              <span class="dt-col">status</span>
+            </div>
+            <div class="dt-row">
+              <span class="dt-cell name">api-gateway</span>
+              <span class="dt-cell">us-east</span>
+              <span class="dt-cell"><span class="status-pill pill-ok">healthy</span></span>
+            </div>
+            <div class="dt-row">
+              <span class="dt-cell name">worker-pool</span>
+              <span class="dt-cell">us-east</span>
+              <span class="dt-cell"><span class="status-pill pill-ok">healthy</span></span>
+            </div>
+            <div class="dt-row">
+              <span class="dt-cell name">batch-proc</span>
+              <span class="dt-cell">us-west</span>
+              <span class="dt-cell"><span class="status-pill pill-warn">scaling</span></span>
+            </div>
+            <div class="dt-row">
+              <span class="dt-cell name">event-bus</span>
+              <span class="dt-cell">global</span>
+              <span class="dt-cell"><span class="status-pill pill-ok">healthy</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DIVIDER ── -->
+    <div class="divider">
+      <div class="div-rule"></div>
+      <span class="div-label">system architecture</span>
+      <div class="div-rule" style="background:linear-gradient(to left, transparent, rgba(200,160,80,0.18), transparent);"></div>
+    </div>
+
+    <!-- ── ZONE 2: ARCHITECTURE MAP ── -->
+    <div class="zone-arch">
+      <div class="arch-map">
+
+        <div class="arch-row">
+          <div class="arch-node active"></div>
+          <div class="arch-stem"></div>
+          <div class="arch-block hi">
+            <div><div class="ab-name">interface</div><div class="ab-desc">composition · state · rendering</div></div>
+            <span class="ab-badge">edge</span>
+          </div>
+        </div>
+        <div class="arch-gap"><span class="gap-arrow">↓</span><span class="gap-tag">user events</span></div>
+
+        <div class="arch-row">
+          <div class="arch-node active"></div>
+          <div class="arch-stem"></div>
+          <div class="arch-block hi">
+            <div><div class="ab-name">workflows</div><div class="ab-desc">orchestration · rules · queues</div></div>
+            <span class="ab-badge">async</span>
+          </div>
+        </div>
+        <div class="arch-gap"><span class="gap-arrow">↓</span><span class="gap-tag">domain events</span></div>
+
+        <div class="arch-row">
+          <div class="arch-node"></div>
+          <div class="arch-stem"></div>
+          <div class="arch-block">
+            <div><div class="ab-name">services</div><div class="ab-desc">contracts · bounded contexts</div></div>
+            <span class="ab-badge">REST · gRPC</span>
+          </div>
+        </div>
+        <div class="arch-gap"><span class="gap-arrow">↓</span><span class="gap-tag">reads · writes</span></div>
+
+        <div class="arch-row">
+          <div class="arch-node"></div>
+          <div class="arch-stem"></div>
+          <div class="arch-block">
+            <div><div class="ab-name">data</div><div class="ab-desc">consistency · cache · durability</div></div>
+            <span class="ab-badge">durable</span>
+          </div>
+        </div>
+        <div class="arch-gap"><span class="gap-arrow">↓</span><span class="gap-tag">telemetry</span></div>
+
+        <div class="arch-row">
+          <div class="arch-node"></div>
+          <div class="arch-stem"></div>
+          <div class="arch-block">
+            <div><div class="ab-name">monitoring</div><div class="ab-desc">traces · metrics · alerts</div></div>
+            <span class="ab-badge">SLO</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── DIVIDER ── -->
+    <div class="divider" style="margin:9px 0 6px;">
+      <div class="div-rule"></div>
+      <span class="div-label">operations</span>
+      <div class="div-rule" style="background:linear-gradient(to left, transparent, rgba(200,160,80,0.18), transparent);"></div>
+    </div>
+
+    <!-- ── ZONE 3: OPERATIONS ── -->
+    <div class="zone-ops">
+
+      <!-- row A: deploy + health -->
+      <div class="ops-row">
+        <div class="ops-card" style="flex:1.1">
+          <div class="ops-label">deploy flow</div>
+          <div class="pipe">
+            <div class="pipe-seg done"></div><div class="pipe-sep"></div>
+            <div class="pipe-seg done"></div><div class="pipe-sep"></div>
+            <div class="pipe-seg active"></div><div class="pipe-sep"></div>
+            <div class="pipe-seg"></div><div class="pipe-sep"></div>
+            <div class="pipe-seg"></div>
+          </div>
+          <div class="pipe-names">
+            <span class="pipe-n">build</span>
+            <span class="pipe-n">test</span>
+            <span class="pipe-n">stage</span>
+            <span class="pipe-n">gate</span>
+            <span class="pipe-n">prod</span>
+          </div>
+        </div>
+        <div class="ops-card" style="flex:0.9">
+          <div class="ops-label">service health</div>
+          <div class="hb-row">
+            <div class="hb-line">
+              <span class="hb-name">api</span>
+              <div class="hb-track"><div class="hb-fill" style="width:96%"></div></div>
+              <span class="hb-val">96</span>
+            </div>
+            <div class="hb-line">
+              <span class="hb-name">wrk</span>
+              <div class="hb-track"><div class="hb-fill" style="width:84%"></div></div>
+              <span class="hb-val">84</span>
+            </div>
+            <div class="hb-line">
+              <span class="hb-name">db</span>
+              <div class="hb-track"><div class="hb-fill" style="width:100%"></div></div>
+              <span class="hb-val">ok</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- row B: trace + alerts -->
+      <div class="ops-row">
+        <div class="ops-card" style="flex:1">
+          <div class="ops-label">trace</div>
+          <div class="trace">
+            <div class="tr-line">
+              <span class="tr-ts">09:14</span>
+              <div class="tr-bar hi" style="width:60px"></div>
+              <span class="tr-label">req → api</span>
+            </div>
+            <div class="tr-line">
+              <span class="tr-ts">09:14</span>
+              <div class="tr-bar" style="width:40px; margin-left:8px"></div>
+              <span class="tr-label">auth</span>
+            </div>
+            <div class="tr-line">
+              <span class="tr-ts">09:14</span>
+              <div class="tr-bar" style="width:70px; margin-left:16px"></div>
+              <span class="tr-label">db query</span>
+            </div>
+            <div class="tr-line">
+              <span class="tr-ts">09:14</span>
+              <div class="tr-bar hi" style="width:90px; margin-left:0px"></div>
+              <span class="tr-label">response</span>
+            </div>
+          </div>
+        </div>
+        <div class="ops-card" style="flex:1">
+          <div class="ops-label">alerts</div>
+          <div class="alert-feed">
+            <div class="af-item">
+              <div class="af-dot ok"></div>
+              <span class="af-text">deploy promoted</span>
+              <span class="af-ts">09:15</span>
+            </div>
+            <div class="af-item">
+              <div class="af-dot ok"></div>
+              <span class="af-text">health check pass</span>
+              <span class="af-ts">09:14</span>
+            </div>
+            <div class="af-item">
+              <div class="af-dot warn"></div>
+              <span class="af-text">worker retry ×1</span>
+              <span class="af-ts">09:13</span>
+            </div>
+            <div class="af-item">
+              <div class="af-dot ok"></div>
+              <span class="af-text">cache warmed</span>
+              <span class="af-ts">09:12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- row C: throughput + metrics -->
+      <div class="ops-row">
+        <div class="ops-card" style="flex:0.9">
+          <div class="ops-label">throughput</div>
+          <div class="spark">
+            <div class="sp-b" style="height:28%"></div>
+            <div class="sp-b" style="height:38%"></div>
+            <div class="sp-b" style="height:52%"></div>
+            <div class="sp-b" style="height:44%"></div>
+            <div class="sp-b" style="height:68%"></div>
+            <div class="sp-b" style="height:62%"></div>
+            <div class="sp-b" style="height:76%"></div>
+            <div class="sp-b" style="height:80%"></div>
+            <div class="sp-b" style="height:90%"></div>
+            <div class="sp-b" style="height:100%"></div>
+          </div>
+        </div>
+        <div class="ops-card" style="flex:1.1">
+          <div class="ops-label">metrics snapshot</div>
+          <div class="mets">
+            <div class="met-item"><div class="met-val">42</div><div class="met-sub">ms p95</div></div>
+            <div class="met-item"><div class="met-val" style="font-size:10px">99.9</div><div class="met-sub">sla %</div></div>
+            <div class="met-item"><div class="met-val" style="font-size:10px">1.2k</div><div class="met-sub">rps</div></div>
+          </div>
+          <div style="margin-top:5px;">
+            <div style="font-size:5.5px;color:var(--dim);letter-spacing:0.14em;margin-bottom:3px;">30d uptime</div>
+            <div class="uptime-band">
+              <div class="ub-seg hi"></div><div class="ub-seg hi"></div><div class="ub-seg up"></div>
+              <div class="ub-seg hi"></div><div class="ub-seg hi"></div><div class="ub-seg hi"></div>
+              <div class="ub-seg up"></div><div class="ub-seg hi"></div><div class="ub-seg hi"></div>
+              <div class="ub-seg hi"></div><div class="ub-seg hi"></div><div class="ub-seg up"></div>
+              <div class="ub-seg hi"></div><div class="ub-seg hi"></div><div class="ub-seg hi"></div>
+              <div class="ub-seg hi"></div><div class="ub-seg hi"></div><div class="ub-seg hi"></div>
+              <div class="ub-seg hi"></div><div class="ub-seg hi"></div><div class="ub-seg up"></div>
+              <div class="ub-seg hi"></div><div class="ub-seg hi"></div><div class="ub-seg hi"></div>
+              <div class="ub-seg hi"></div><div class="ub-seg hi"></div><div class="ub-seg hi"></div>
+              <div class="ub-seg hi"></div><div class="ub-seg hi"></div><div class="ub-seg hi"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <div class="footer">
+      <span class="ft-l">software engineering · product systems</span>
+      <div class="ft-r">
+        <div class="ft-dot"></div>
+        <span>operational</span>
+      </div>
+    </div>
+
+  </div>
+</div>

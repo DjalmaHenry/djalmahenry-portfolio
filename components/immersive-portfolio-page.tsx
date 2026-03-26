@@ -840,18 +840,16 @@ export function ImmersivePortfolioPage() {
           </motion.div>
 
           <motion.div
+            className="hidden justify-center lg:flex lg:justify-end"
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeInUp}
             transition={{ duration: 0.55, delay: 0.08, ease: "easeOut" }}
           >
-            <VisualPlaceholder
-              visualId="Visual 02"
-              title={copy.about.visualTitle}
-              description={copy.about.visualDescription}
-              className="h-full"
-            />
+            <div className="h-full w-full overflow-hidden rounded-[28px]">
+              <iframe src="/visual_02.html" title={copy.about.visualTitle} loading="lazy" className="h-full min-h-[42rem] w-full rounded-[28px]" />
+            </div>
           </motion.div>
         </div>
       </section>
