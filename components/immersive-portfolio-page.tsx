@@ -1,13 +1,16 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
+import useEmblaCarousel from "embla-carousel-react"
 import {
   ArrowUpRight,
   Award,
   BadgeCheck,
   BriefcaseBusiness,
+  ChevronDown,
   Cloud,
   Code2,
   Download,
@@ -288,31 +291,36 @@ const portfolioCopy = {
       title: "Feedback recorrente sobre disciplina, evolução e capacidade de entrega.",
       description:
         "As recomendações apontam para um padrão consistente: crescimento rápido, colaboração forte e compromisso real com qualidade de engenharia.",
-      summaryLabel: "Resumo",
-      highlights: [
-        "Profissional dedicado, disciplinado e comprometido com evolução contínua.",
-        "Aprendizado rápido e ganho consistente de maturidade técnica.",
-        "Capacidade forte de resolver problemas complexos com clareza.",
-        "Boa colaboração em equipe e ética de trabalho reconhecida.",
-      ],
+      aiLabel: "Resumo por IA",
+      fullLabel: "Ver depoimento completo",
       testimonials: [
         {
           name: "Susiane Santos",
           role: "UI/UX Designer @ Manifesto Games",
-          quote:
-            "Profissional dedicado, sério e em constante aperfeiçoamento, com evolução técnica muito rápido e entregas cada vez mais fortes.",
+          summary:
+            "Destaque para disciplina, seriedade, evolução técnica rápida e entregas cada vez mais consistentes ao longo da trajetória na Manifesto Games.",
+          fullQuote: [
+            "Djalma é um profissional extremamente dedicado ao que faz buscando entregar seu melhor com disciplina e muita seriedade. Sempre em busca de aperfeiçoamento, mostrou uma evolução muito rápida na qualidade das entregas ao longo do período em que trabalhamos juntos na Manifesto Games, tanto enquanto estagiário como enquanto desenvolvedor full stack. Seu potencial profissional é uma vantagem para qualquer time em que ele estiver.",
+          ],
         },
         {
           name: "Fernando Bellelis",
           role: "Senior AI Engineer @ Telus Digital",
-          quote:
-            "Engenheiro altamente competente, com forte domínio de boas práticas, excelente ética de trabalho e grande capacidade para resolver problemas complexos.",
+          summary:
+            "Reconhecimento pela competência técnica, domínio de boas práticas, capacidade de resolver problemas complexos e ética de trabalho acima da média.",
+          fullQuote: [
+            "Djalma Lima é um engenheiro de software altamente competente com quem tive a oportunidade de estudar e colaborar em diversos projetos. Sua profunda compreensão da engenharia de software, compromisso com as melhores práticas, habilidade para resolver problemas complexos, e excepcional ética de trabalho fazem dele um profissional exemplar. Sua capacidade de trabalhar bem em equipe e constante busca pela excelência garantem que ele seria um ativo inestimável para qualquer organização na área de engenharia de software.",
+          ],
         },
         {
           name: "Lucas dos Santos Amorim Rego",
           role: "Pesquisador Cyber Threat Intelligence @ CESAR",
-          quote:
-            "Destaca-se pelo comprometimento em aprender, crescer e colaborar bem, mantendo disciplina e motivação para superar desafios.",
+          summary:
+            "Percepção clara de dedicação, motivação, boa comunicação e forte capacidade de aprender, evoluir e colaborar em equipe.",
+          fullQuote: [
+            "Eu tive a oportunidade de conhecer Djalma durante nosso tempo juntos na universidade, e posso dizer que ele é um estudante extremamente dedicado e esforçado. Durante todo o tempo que o conheci, ele sempre demonstrou um forte comprometimento em aprender e crescer como pessoa e profissional.",
+            "Djalma é altamente motivado e determinado a alcançar seus objetivos. Ele se destaca por sua habilidade em trabalhar duro e superar desafios, sempre buscando formas de aprimorar suas habilidades e conhecimentos em sua área de estudo. Além disso, ele é um excelente comunicador e trabalha muito bem em equipe, tornando-o um colaborador valioso em qualquer projeto.",
+          ],
         },
       ],
     },
@@ -589,31 +597,36 @@ const portfolioCopy = {
       title: "Recurring feedback around discipline, growth, and delivery quality.",
       description:
         "The recommendations point to a consistent pattern: fast growth, strong collaboration, and a real commitment to engineering quality.",
-      summaryLabel: "Summary",
-      highlights: [
-        "Dedicated professional with discipline and commitment to continuous growth.",
-        "Fast learning curve and steady technical maturity.",
-        "Strong ability to solve complex problems with clarity.",
-        "Well-recognized collaboration and work ethic.",
-      ],
+      aiLabel: "AI Summary",
+      fullLabel: "View full testimonial",
       testimonials: [
         {
           name: "Susiane Santos",
           role: "UI/UX Designer @ Manifesto Games",
-          quote:
-            "A dedicated and serious professional, constantly improving, with very fast technical evolution and increasingly strong deliveries.",
+          summary:
+            "Recognized for discipline, seriousness, fast technical growth, and increasingly strong delivery throughout the journey at Manifesto Games.",
+          fullQuote: [
+            "Djalma is an extremely dedicated professional who always strives to deliver his best work with discipline and seriousness. Constantly seeking improvement, he showed very rapid growth in the quality of his deliveries throughout the period we worked together at Manifesto Games, both as an intern and as a full stack developer. His professional potential is a strong asset to any team he joins.",
+          ],
         },
         {
           name: "Fernando Bellelis",
           role: "Senior AI Engineer @ Telus Digital",
-          quote:
-            "A highly competent engineer with strong command of best practices, excellent work ethic, and a remarkable ability to solve complex problems.",
+          summary:
+            "Highlighted for technical competence, strong engineering fundamentals, problem-solving ability, and an outstanding work ethic.",
+          fullQuote: [
+            "Djalma Lima is a highly competent software engineer with whom I had the opportunity to study and collaborate on several projects. His deep understanding of software engineering, commitment to best practices, ability to solve complex problems, and exceptional work ethic make him an exemplary professional. His ability to work well in teams and his constant pursuit of excellence ensure that he would be an invaluable asset to any organization in software engineering.",
+          ],
         },
         {
           name: "Lucas dos Santos Amorim Rego",
           role: "Cyber Threat Intelligence Researcher @ CESAR",
-          quote:
-            "Stands out for the commitment to learn, grow, and collaborate well, with discipline and motivation to overcome challenges.",
+          summary:
+            "Strong impression of dedication, motivation, communication skills, and a clear commitment to learning, growth, and teamwork.",
+          fullQuote: [
+            "I had the opportunity to meet Djalma during our time together at university, and I can say that he is an extremely dedicated and hardworking student. Throughout the time I knew him, he consistently demonstrated a strong commitment to learning and growing both personally and professionally.",
+            "Djalma is highly motivated and determined to achieve his goals. He stands out for his ability to work hard and overcome challenges, always looking for ways to improve his skills and knowledge in his field of study. In addition, he is an excellent communicator and works very well in teams, making him a valuable collaborator in any project.",
+          ],
         },
       ],
     },
@@ -753,6 +766,160 @@ function ExperienceCard({
         </div>
       </div>
     </motion.article>
+  )
+}
+
+function RecommendationsSlider({
+  copy,
+}: {
+  copy: PortfolioCopy["recommendations"]
+}) {
+  const { locale } = useLanguage()
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" })
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (!emblaApi) return
+
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap())
+    }
+
+    onSelect()
+    emblaApi.on("select", onSelect)
+
+    return () => {
+      emblaApi.off("select", onSelect)
+    }
+  }, [emblaApi])
+
+  useEffect(() => {
+    if (!emblaApi || isHovered) return
+
+    const autoplay = window.setInterval(() => {
+      emblaApi.scrollNext()
+    }, 5200)
+
+    return () => {
+      window.clearInterval(autoplay)
+    }
+  }, [emblaApi, isHovered])
+
+  return (
+    <div
+      className="mt-10"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="-ml-4 flex">
+          {copy.testimonials.map((item, index) => (
+            <div key={item.name} className="min-w-0 flex-[0_0_100%] pl-4 lg:flex-[0_0_78%] xl:flex-[0_0_70%]">
+              <motion.article
+                className="glass-panel h-full rounded-[34px] p-6 sm:p-8"
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.15 }}
+                variants={fadeInUp}
+                transition={{ duration: 0.5, delay: index * 0.06, ease: "easeOut" }}
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-amber-200/15 bg-amber-200/10">
+                      <Quote className="h-5 w-5 text-amber-200" />
+                    </div>
+                    <div>
+                      <p className="text-base font-medium text-white">{item.name}</p>
+                      <p className="mt-1 text-sm text-white/48">{item.role}</p>
+                    </div>
+                  </div>
+                  <span className="glass-chip shrink-0">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+
+                <div className="mt-8 rounded-[28px] border border-white/10 bg-white/[0.03] p-5">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="glass-chip">
+                      <Sparkles className="h-3.5 w-3.5" />
+                      {copy.aiLabel}
+                    </span>
+                  </div>
+                  <p className="mt-4 text-base leading-8 text-white/76">{item.summary}</p>
+                </div>
+
+                <div className="mt-6 overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.02]">
+                  <button
+                    type="button"
+                    onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors duration-300 hover:bg-white/[0.03]"
+                    aria-expanded={expandedIndex === index}
+                  >
+                    <div>
+                      <p className="text-sm font-medium text-white/82">{copy.fullLabel}</p>
+                      <p className="mt-1 text-xs text-white/42">
+                        {locale === "pt"
+                          ? "Abra para ler a recomendação na íntegra."
+                          : "Open to read the full recommendation."}
+                      </p>
+                    </div>
+                    <span
+                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-amber-200 transition-transform duration-300 ${
+                        expandedIndex === index ? "rotate-180" : ""
+                      }`}
+                    >
+                      <ChevronDown className="h-4 w-4" />
+                    </span>
+                  </button>
+
+                  <motion.div
+                    initial={false}
+                    animate={
+                      expandedIndex === index
+                        ? { height: "auto", opacity: 1 }
+                        : { height: 0, opacity: 0 }
+                    }
+                    transition={{ duration: 0.28, ease: "easeOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="border-t border-white/10 px-5 py-5">
+                      <div className="space-y-4 text-sm leading-8 text-white/66 sm:text-[0.96rem]">
+                        {item.fullQuote.map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.article>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-5 flex items-center justify-between gap-4">
+        <div className="flex items-center gap-2">
+          {copy.testimonials.map((item, index) => (
+            <button
+              key={item.name}
+              type="button"
+              aria-label={`${copy.eyebrow} ${index + 1}`}
+              onClick={() => emblaApi?.scrollTo(index)}
+              className={`rounded-full border transition-all duration-300 ${
+                selectedIndex === index
+                  ? "h-3 w-10 border-amber-100/80 bg-amber-200 shadow-[0_0_18px_rgba(229,190,120,0.28)]"
+                  : "h-3 w-3 border-white/35 bg-white/20 hover:border-white/55 hover:bg-white/34"
+              }`}
+            />
+          ))}
+        </div>
+        <p className="text-xs uppercase tracking-[0.26em] text-white/36">
+          {String(selectedIndex + 1).padStart(2, "0")} / {String(copy.testimonials.length).padStart(2, "0")}
+        </p>
+      </div>
+    </div>
   )
 }
 
@@ -1133,52 +1300,7 @@ export function ImmersivePortfolioPage() {
             description={copy.recommendations.description}
           />
         </motion.div>
-
-        <div className="mt-10 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-          <motion.div
-            className="glass-panel rounded-[34px] p-6 sm:p-8"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={fadeInUp}
-            transition={{ duration: 0.55, ease: "easeOut" }}
-          >
-            <p className="section-kicker">{copy.recommendations.summaryLabel}</p>
-            <div className="mt-6 grid gap-3">
-              {copy.recommendations.highlights.map((item) => (
-                <div key={item} className="glass-strip text-sm leading-6">
-                  <BadgeCheck className="h-4 w-4 shrink-0 text-amber-200" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          <div className="grid gap-4">
-            {copy.recommendations.testimonials.map((item, index) => (
-              <motion.article
-                key={item.name}
-                className="glass-panel rounded-[30px] p-6"
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.15 }}
-                variants={fadeInUp}
-                transition={{ duration: 0.5, delay: index * 0.06, ease: "easeOut" }}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-amber-200/15 bg-amber-200/10">
-                    <Quote className="h-5 w-5 text-amber-200" />
-                  </div>
-                  <div>
-                    <p className="text-base leading-7 text-white/74">{item.quote}</p>
-                    <p className="mt-4 text-sm font-medium text-white">{item.name}</p>
-                    <p className="text-sm text-white/48">{item.role}</p>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
+        <RecommendationsSlider copy={copy.recommendations} />
       </section>
 
       <section id="contact" className="container-custom pb-8 pt-20">
