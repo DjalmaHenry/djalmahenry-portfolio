@@ -45,7 +45,7 @@ const portfolioCopy = {
       },
       stats: [
         { value: "5 anos", label: "desenvolvendo produtos digitais com foco em escala, segurança e consistência técnica" },
-        { value: "Multicloud", label: "arquitetura e operação em GCP, AWS e Azure" },
+        { value: "Luizalabs", label: "atuo na squad estratégica de logística no maior ecossistema de varejo do Brasil" },
         { value: "Full Stack", label: "Node.js, Python, NestJS, React.js e Vue.js como base da atuação" },
       ],
       noteTop: "Graduado em Ciência da Computação pela UNICAP",
@@ -354,7 +354,7 @@ const portfolioCopy = {
       },
       stats: [
         { value: "5 years", label: "building digital products with a focus on scale, security, and technical consistency" },
-        { value: "Multicloud", label: "architecture and operations across GCP, AWS, and Azure" },
+        { value: "Luizalabs", label: "working in a strategic logistics squad within Brazil's largest retail ecosystem" },
         { value: "Full Stack", label: "Node.js, Python, NestJS, React.js, and Vue.js as the core of day-to-day work" },
       ],
       noteTop: "Computer Science graduate from UNICAP",
