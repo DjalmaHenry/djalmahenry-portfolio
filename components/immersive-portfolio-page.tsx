@@ -308,7 +308,7 @@ const portfolioCopy = {
         },
         {
           name: "Fernando Bellelis",
-          role: "Senior AI Engineer @ Telus Digital",
+          role: "Senior AI Engineer @ Transcenda",
           summary:
             "Reconhecimento pela competência técnica, domínio de boas práticas, capacidade de resolver problemas complexos e ética de trabalho acima da média.",
           fullQuote: [
@@ -614,7 +614,7 @@ const portfolioCopy = {
         },
         {
           name: "Fernando Bellelis",
-          role: "Senior AI Engineer @ Telus Digital",
+          role: "Senior AI Engineer @ Transcenda",
           summary:
             "Highlighted for technical competence, strong engineering fundamentals, problem-solving ability, and an outstanding work ethic.",
           fullQuote: [
