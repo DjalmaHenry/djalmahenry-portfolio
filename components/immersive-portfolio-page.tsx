@@ -14,11 +14,14 @@ import {
   Cloud,
   Code2,
   Download,
+  FlaskConical,
+  GitBranch,
   GraduationCap,
   MapPin,
   MessageCircle,
-  Presentation,
+  Monitor,
   Quote,
+  Server,
   ServerCog,
   Sparkles,
 } from "lucide-react"
@@ -667,34 +670,147 @@ function SectionHeading({
   )
 }
 
-function VisualPlaceholder({
-  visualId,
-  title,
-  description,
-  className = "",
+const FLOATING_BADGES = [
+  { tech: "Node.js",    x: 76,  y: 10,  cls: "badge-float-a", delay: "0s"    },
+  { tech: "React.js",  x: 88,  y: 36,  cls: "badge-float-b", delay: "0.6s"  },
+  { tech: "Python",    x: 78,  y: 64,  cls: "badge-float-c", delay: "1.1s"  },
+  { tech: "NestJS",    x: 18,  y: 66,  cls: "badge-float-a", delay: "1.6s"  },
+  { tech: "GCP",       x: 8,   y: 40,  cls: "badge-float-b", delay: "0.9s"  },
+  { tech: "TypeScript",x: 14,  y: 14,  cls: "badge-float-c", delay: "0.3s"  },
+  { tech: "AWS",       x: 50,  y: 4,   cls: "badge-float-b", delay: "1.4s"  },
+  { tech: "MongoDB",   x: 88,  y: 68,  cls: "badge-float-c", delay: "0.5s"  },
+]
+
+function ProfileConstellation() {
+  return (
+    <div className="glass-panel relative h-full min-h-[38rem] overflow-hidden rounded-[34px]">
+      {/* Aurora background */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="orb-pulse absolute left-[20%] top-[20%] h-52 w-52 rounded-full bg-amber-200/10 blur-3xl" style={{ animationDelay: "0s" }} />
+        <div className="orb-pulse absolute bottom-[15%] right-[18%] h-64 w-64 rounded-full bg-amber-900/14 blur-3xl" style={{ animationDelay: "1.8s" }} />
+        <div className="orb-pulse absolute right-[30%] top-[55%] h-32 w-32 rounded-full bg-sky-400/5 blur-2xl" style={{ animationDelay: "3s" }} />
+      </div>
+
+      {/* Grid overlay subtle */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,247,234,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,247,234,0.4) 1px, transparent 1px)",
+          backgroundSize: "52px 52px",
+        }}
+      />
+
+      {/* Photo */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <motion.div
+          animate={{ y: [0, -7, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="relative z-10"
+        >
+          <div className="glass-panel overflow-hidden rounded-[28px] p-2.5 shadow-[0_32px_80px_rgba(0,0,0,0.55)]">
+            <Image
+              src="/djalmahenry.jpeg"
+              alt="Djalma Henry"
+              width={220}
+              height={290}
+              className="h-[18rem] w-[14rem] rounded-[22px] object-cover object-top"
+            />
+          </div>
+          {/* glow ring */}
+          <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-amber-200/15" />
+        </motion.div>
+      </div>
+
+      {/* Floating tech badges */}
+      {FLOATING_BADGES.map(({ tech, x, y, cls, delay }) => (
+        <span
+          key={tech}
+          className={`glass-chip absolute z-20 text-xs ${cls}`}
+          style={{ left: `${x}%`, top: `${y}%`, animationDelay: delay }}
+        >
+          {tech}
+        </span>
+      ))}
+
+      {/* Bottom caption */}
+      <div className="absolute bottom-5 left-0 right-0 z-20 flex justify-center">
+        <span className="glass-chip text-xs tracking-widest text-white/50">Full Stack · Fortaleza, CE</span>
+      </div>
+    </div>
+  )
+}
+
+function AuroraDivider() {
+  return (
+    <div className="aurora-divider container-custom">
+      <motion.div
+        className="aurora-divider-line"
+        initial={{ scaleX: 0, opacity: 0 }}
+        whileInView={{ scaleX: 1, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.4, ease: "easeOut" }}
+        style={{ originX: 0.5 }}
+      />
+      <motion.div
+        className="aurora-divider-dot"
+        initial={{ opacity: 0, scale: 0 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: 0.6 }}
+      />
+    </div>
+  )
+}
+
+const STACK_GROUP_ICONS = [Sparkles, Monitor, Server, FlaskConical, Cloud, GitBranch]
+
+function StackFlipCard({
+  group,
+  index,
 }: {
-  visualId: string
-  title: string
-  description: string
-  className?: string
+  group: { title: string; items: readonly string[] }
+  index: number
 }) {
+  const [flipped, setFlipped] = useState(false)
   const { locale } = useLanguage()
+  const Icon = STACK_GROUP_ICONS[index] ?? Sparkles
 
   return (
-    <div
-      className={`glass-surface relative overflow-hidden rounded-[28px] border border-dashed border-white/15 p-6 ${className}`}
-    >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(229,190,120,0.12),transparent_32%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent)]" />
-      <div className="relative z-10 flex h-full min-h-[14rem] flex-col justify-between">
-        <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-amber-200/70">{visualId}</p>
-          <h3 className="mt-3 text-2xl font-semibold text-white">{title}</h3>
-          <p className="mt-3 max-w-md text-sm leading-7 text-white/60">{description}</p>
+    <div className="flip-card-scene h-[15rem]" onClick={() => setFlipped((f) => !f)}>
+      <motion.div
+        className="flip-card-inner h-full"
+        animate={{ rotateY: flipped ? 180 : 0 }}
+        transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
+      >
+        {/* Front */}
+        <div className="flip-card-face glass-panel flex flex-col items-center justify-center gap-4 rounded-[28px] p-6">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full border border-amber-200/20 bg-amber-200/10">
+            <Icon className="h-6 w-6 text-amber-200" />
+          </div>
+          <h3 className="text-xl font-semibold text-white">{group.title}</h3>
+          <p className="text-xs uppercase tracking-[0.2em] text-white/36">
+            {locale === "pt" ? "clique para ver" : "click to reveal"}
+          </p>
         </div>
-        <span className="glass-chip w-fit">
-          {locale === "pt" ? "Espaço reservado para conteúdo visual" : "Reserved space for visual content"}
-        </span>
-      </div>
+
+        {/* Back */}
+        <div className="flip-card-face flip-card-back glass-panel flex flex-col rounded-[28px] p-6">
+          <div className="mb-4 flex items-center gap-3">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-amber-200/15 bg-amber-200/10">
+              <Icon className="h-4 w-4 text-amber-200" />
+            </div>
+            <h3 className="text-base font-semibold text-white">{group.title}</h3>
+          </div>
+          <div className="flex flex-wrap gap-2 overflow-auto">
+            {group.items.map((item) => (
+              <span key={item} className="glass-chip">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </div>
   )
 }
@@ -757,10 +873,10 @@ function ExperienceCard({
             </div>
           </div>
 
-          {entry.related ? (
+          {"related" in entry && entry.related ? (
             <div className="glass-surface rounded-[26px] p-5">
               <p className="text-sm uppercase tracking-[0.28em] text-white/42">{copy.relatedLabel}</p>
-              <p className="mt-4 text-sm leading-7 text-white/70">{entry.related}</p>
+              <p className="mt-4 text-sm leading-7 text-white/70">{entry.related as string}</p>
             </div>
           ) : null}
         </div>
@@ -926,12 +1042,17 @@ function RecommendationsSlider({
 export function ImmersivePortfolioPage() {
   const { locale } = useLanguage()
   const copy = portfolioCopy[locale]
+  const [showAllExperiences, setShowAllExperiences] = useState(false)
+
+  const visibleEntries = (showAllExperiences
+    ? copy.experience.entries
+    : copy.experience.entries.slice(0, 3)) as PortfolioCopy["experience"]["entries"]
 
   return (
     <div className="relative overflow-clip pb-10">
       <div className="page-mesh" />
 
-      <section id="intro" className="container-custom pt-[calc(var(--header-offset)+2.5rem)]">
+      <section id="intro" className="container-custom pb-6 pt-[calc(var(--header-offset)+3rem)]">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <motion.div
             className="space-y-7"
@@ -1027,7 +1148,9 @@ export function ImmersivePortfolioPage() {
         </motion.div>
       </section>
 
-      <section id="about" className="container-custom pt-20">
+      <AuroraDivider />
+
+      <section id="about" className="container-custom pt-8 pb-4">
         <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <motion.div
             className="glass-panel rounded-[34px] p-6 sm:p-8"
@@ -1061,21 +1184,20 @@ export function ImmersivePortfolioPage() {
           </motion.div>
 
           <motion.div
-            className="hidden justify-center lg:flex lg:justify-end"
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeInUp}
             transition={{ duration: 0.55, delay: 0.08, ease: "easeOut" }}
           >
-            <div className="h-full w-full overflow-hidden rounded-[28px]">
-              <iframe src="/visual_02.html" title={copy.about.visualTitle} loading="lazy" className="h-full min-h-[42rem] w-full rounded-[28px]" />
-            </div>
+            <ProfileConstellation />
           </motion.div>
         </div>
       </section>
 
-      <section id="experience" className="container-custom pt-20">
+      <AuroraDivider />
+
+      <section id="experience" className="container-custom pt-8 pb-4">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -1109,13 +1231,41 @@ export function ImmersivePortfolioPage() {
         </motion.div>
 
         <div className="mt-8 space-y-4">
-          {copy.experience.entries.map((entry, index) => (
-            <ExperienceCard key={`${entry.company}-${entry.period}`} entry={entry} copy={copy.experience} index={index} />
+          {visibleEntries.map((entry, index) => (
+            <ExperienceCard key={`${entry.company}-${entry.period}`} entry={entry} copy={copy.experience as PortfolioCopy["experience"]} index={index} />
           ))}
         </div>
+
+        {copy.experience.entries.length > 3 && (
+          <motion.div
+            className="mt-6 flex justify-center"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            transition={{ duration: 0.4 }}
+          >
+            <button
+              type="button"
+              onClick={() => setShowAllExperiences((s) => !s)}
+              className="button-glass gap-2 text-sm"
+            >
+              <ChevronDown
+                className={`h-4 w-4 text-amber-200 transition-transform duration-300 ${showAllExperiences ? "rotate-180" : ""}`}
+              />
+              {showAllExperiences
+                ? locale === "pt" ? "Ver menos" : "Show less"
+                : locale === "pt"
+                  ? `Ver mais ${copy.experience.entries.length - 3} experiências`
+                  : `Show ${copy.experience.entries.length - 3} more experiences`}
+            </button>
+          </motion.div>
+        )}
       </section>
 
-      <section id="stack" className="container-custom pt-20">
+      <AuroraDivider />
+
+      <section id="stack" className="container-custom pt-8 pb-4">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -1123,34 +1273,33 @@ export function ImmersivePortfolioPage() {
           variants={fadeInUp}
           transition={{ duration: 0.55, ease: "easeOut" }}
         >
-          <SectionHeading eyebrow={copy.stack.eyebrow} title={copy.stack.title} description={copy.stack.description} />
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHeading eyebrow={copy.stack.eyebrow} title={copy.stack.title} description={copy.stack.description} />
+            <span className="glass-chip shrink-0 self-start sm:self-auto">
+              {locale === "pt" ? "Clique nos cards para revelar" : "Click cards to reveal"}
+            </span>
+          </div>
         </motion.div>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {copy.stack.groups.map((group, index) => (
-            <motion.article
+            <motion.div
               key={group.title}
-              className="glass-panel rounded-[28px] p-6"
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.15 }}
               variants={fadeInUp}
-              transition={{ duration: 0.45, delay: index * 0.04, ease: "easeOut" }}
+              transition={{ duration: 0.45, delay: index * 0.06, ease: "easeOut" }}
             >
-              <h3 className="text-xl font-semibold text-white">{group.title}</h3>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span key={item} className="glass-chip">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </motion.article>
+              <StackFlipCard group={group} index={index} />
+            </motion.div>
           ))}
         </div>
       </section>
 
-      <section id="projects" className="container-custom pt-20">
+      <AuroraDivider />
+
+      <section id="projects" className="container-custom pt-8 pb-4">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -1169,23 +1318,32 @@ export function ImmersivePortfolioPage() {
           {copy.projects.items.map((project, index) => (
             <motion.article
               key={project.title}
-              className="glass-panel rounded-[34px] p-5 transition-transform duration-300 hover:-translate-y-1 sm:p-6"
+              className="glass-panel group rounded-[34px] p-5 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_32px_80px_rgba(229,190,120,0.1)] sm:p-6"
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.15 }}
               variants={fadeInUp}
               transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
             >
-              <Link href={project.href} target="_blank" rel="noopener noreferrer" className="group block">
+              <Link href={project.href} target="_blank" rel="noopener noreferrer" className="block">
                 <div className="relative overflow-hidden rounded-[28px]">
-                  <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0))]" />
-                  <div className="relative h-[15rem] sm:h-[18rem] lg:h-[20rem]">
+                  {/* Hover overlay */}
+                  <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(229,190,120,0.04),rgba(255,255,255,0))] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0))]" />
+                  <div className="relative h-[15rem] sm:h-[18rem] lg:h-[22rem]">
                     <Image
                       src={project.imageSrc}
                       alt={project.imageAlt}
                       fill
-                      className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
                     />
+                  </div>
+                  {/* Top-right badge */}
+                  <div className="absolute right-4 top-4 z-20 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <span className="glass-chip text-amber-200">
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                      {locale === "pt" ? "Ver projeto" : "View project"}
+                    </span>
                   </div>
                 </div>
                 <div className="mt-6">
@@ -1194,7 +1352,6 @@ export function ImmersivePortfolioPage() {
                       {project.title}
                     </h3>
                     <span className="glass-chip">{project.stack}</span>
-                    <ArrowUpRight className="h-4 w-4 text-white/52 transition-colors duration-300 group-hover:text-amber-200" />
                   </div>
                   <p className="mt-4 text-sm leading-7 text-white/68 sm:text-base">{project.description}</p>
                 </div>
@@ -1204,7 +1361,9 @@ export function ImmersivePortfolioPage() {
         </div>
       </section>
 
-      <section id="education" className="container-custom pt-20">
+      <AuroraDivider />
+
+      <section id="education" className="container-custom pt-8 pb-4">
         <div className="grid gap-6 lg:grid-cols-2">
           <motion.div
             className="glass-panel rounded-[34px] p-6 sm:p-8"
@@ -1286,7 +1445,9 @@ export function ImmersivePortfolioPage() {
         </div>
       </section>
 
-      <section id="recommendations" className="container-custom pt-20">
+      <AuroraDivider />
+
+      <section id="recommendations" className="container-custom pt-8 pb-4">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -1300,10 +1461,12 @@ export function ImmersivePortfolioPage() {
             description={copy.recommendations.description}
           />
         </motion.div>
-        <RecommendationsSlider copy={copy.recommendations} />
+        <RecommendationsSlider copy={copy.recommendations as PortfolioCopy["recommendations"]} />
       </section>
 
-      <section id="contact" className="container-custom pb-8 pt-20">
+      <AuroraDivider />
+
+      <section id="contact" className="container-custom pb-12 pt-8">
         <motion.div
           className="glass-panel overflow-hidden rounded-[38px] p-6 sm:p-10"
           initial="hidden"

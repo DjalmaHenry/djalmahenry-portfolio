@@ -192,12 +192,12 @@ export function Header() {
         const rect = section.getBoundingClientRect()
 
         if (rect.top <= viewportAnchor && rect.bottom >= viewportAnchor) {
-          current = `#${section.id}`
+          current = `#${section.id}` as typeof current
           break
         }
 
         if (rect.top < viewportAnchor) {
-          current = `#${section.id}`
+          current = `#${section.id}` as typeof current
         }
       }
 

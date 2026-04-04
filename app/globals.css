@@ -317,10 +317,112 @@
 }
 
 .gradient-text {
-  background-image: linear-gradient(135deg, #fff8ec 0%, #e1ba79 40%, #9d6237 100%);
+  background-image: linear-gradient(135deg, #ffffff 0%, #f5d48a 30%, #e8a84c 60%, #a06030 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* ─── Flip card 3D ─────────────────────────────────────────── */
+.flip-card-scene {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flip-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* ─── Section aurora divider ────────────────────────────────── */
+.aurora-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5rem;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aurora-divider-line {
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(229, 190, 120, 0.12) 20%,
+    rgba(229, 190, 120, 0.32) 50%,
+    rgba(229, 190, 120, 0.12) 80%,
+    transparent 100%
+  );
+}
+
+.aurora-divider-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 6px;
+  width: 6px;
+  border-radius: 9999px;
+  background: rgba(229, 190, 120, 0.55);
+  box-shadow: 0 0 12px rgba(229, 190, 120, 0.4);
+}
+
+/* ─── Floating badge animations ─────────────────────────────── */
+@keyframes badge-float-a {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+  50% { transform: translate(-50%, -50%) translateY(-10px); }
+}
+@keyframes badge-float-b {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+  50% { transform: translate(-50%, -50%) translateY(10px); }
+}
+@keyframes badge-float-c {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0px) translateX(0px); }
+  50% { transform: translate(-50%, -50%) translateY(-6px) translateX(4px); }
+}
+
+.badge-float-a { animation: badge-float-a 3.8s ease-in-out infinite; }
+.badge-float-b { animation: badge-float-b 4.2s ease-in-out infinite; }
+.badge-float-c { animation: badge-float-c 5s ease-in-out infinite; }
+
+/* ─── Constellation orb pulse ───────────────────────────────── */
+@keyframes orb-pulse {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(1.08); }
+}
+
+.orb-pulse { animation: orb-pulse 4s ease-in-out infinite; }
+
+/* ─── Aurora sweep (scanning line effect) ───────────────────── */
+@keyframes aurora-sweep {
+  0% { transform: translateX(-120%); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(120%); opacity: 0; }
+}
+
+/* ─── Teal accent for variety ───────────────────────────────── */
+.accent-teal-glow {
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.08);
 }
 
 .section-padding {
