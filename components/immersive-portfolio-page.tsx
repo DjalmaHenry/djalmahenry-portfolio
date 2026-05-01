@@ -84,7 +84,7 @@ const portfolioCopy = {
       eyebrow: "Experiência",
       title: "Trajetória construída com evolução contínua e contexto real de produto.",
       description:
-        "A seção foi reorganizada para ficar mais fluida e mais próxima de uma leitura executiva: menos listas extensas e mais contexto sobre escopo, impacto e tecnologias-chave.",
+        "5 anos de atuação contínua, da pesquisa acadêmica às squads de alta performance em produtos de escala nacional.",
       recognitionsTitle: "Reconhecimentos",
       recognitions: [
         "Aluno laureado em Ciência da Computação na UNICAP",
@@ -209,7 +209,7 @@ const portfolioCopy = {
       eyebrow: "Stack",
       title: "Tecnologia escolhida para construir, escalar e sustentar produto.",
       description:
-        "O repertório técnico foi organizado para destacar o que realmente importa: base forte em desenvolvimento Full Stack, cloud, testes e operação.",
+        "Base técnica consolidada em Full Stack, cloud, testes e operação ao longo de 5 anos de atuação.",
       groups: [
         { title: "Destaque", items: ["Node.js", "Python", "NestJS", "React.js", "Vue.js"] },
         { title: "Front-end", items: ["React", "Next.js", "Vue.js", "Angular", "TypeScript"] },
@@ -221,9 +221,9 @@ const portfolioCopy = {
     },
     projects: {
       eyebrow: "Projetos",
-      title: "Cases selecionados para evidenciar produto, interface e solução.",
+      title: "Projetos em produção, do código ao resultado.",
       description:
-        "Os projetos abaixo foram mantidos porque comunicam melhor a combinação entre construção técnica, clareza de proposta e potencial visual.",
+        "Produtos construídos do zero e em operação, com foco em domínio técnico, clareza de proposta e impacto real.",
       items: [
         {
           title: "Shoryu",
@@ -390,7 +390,7 @@ const portfolioCopy = {
       eyebrow: "Experience",
       title: "A career shaped by continuous growth and real product context.",
       description:
-        "This section was reorganized to feel more executive and more readable: fewer long lists and more context around scope, impact, and core technologies.",
+        "5 years of continuous growth, from academic research to high-performance squads building products at national scale.",
       recognitionsTitle: "Highlights",
       recognitions: [
         "Top graduate in Computer Science at UNICAP",
@@ -527,9 +527,9 @@ const portfolioCopy = {
     },
     projects: {
       eyebrow: "Projects",
-      title: "Selected cases that communicate product, interface, and solution quality.",
+      title: "Live projects, from code to real results.",
       description:
-        "The projects below were kept because they better represent the combination of technical execution, positioning clarity, and visual potential.",
+        "Products built from scratch and in production, focused on technical depth, clear purpose, and real-world impact.",
       items: [
         {
           title: "Shoryu",
@@ -686,8 +686,8 @@ function ProfileConstellation() {
     <div className="glass-panel relative h-full min-h-[38rem] overflow-hidden rounded-[34px]">
       {/* Aurora background */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="orb-pulse absolute left-[20%] top-[20%] h-52 w-52 rounded-full bg-amber-200/10 blur-3xl" style={{ animationDelay: "0s" }} />
-        <div className="orb-pulse absolute bottom-[15%] right-[18%] h-64 w-64 rounded-full bg-amber-900/14 blur-3xl" style={{ animationDelay: "1.8s" }} />
+        <div className="orb-pulse absolute left-[20%] top-[20%] h-52 w-52 rounded-full bg-emerald-300/10 blur-3xl" style={{ animationDelay: "0s" }} />
+        <div className="orb-pulse absolute bottom-[15%] right-[18%] h-64 w-64 rounded-full bg-emerald-900/14 blur-3xl" style={{ animationDelay: "1.8s" }} />
         <div className="orb-pulse absolute right-[30%] top-[55%] h-32 w-32 rounded-full bg-sky-400/5 blur-2xl" style={{ animationDelay: "3s" }} />
       </div>
 
@@ -710,7 +710,7 @@ function ProfileConstellation() {
         >
           <div className="glass-panel overflow-hidden rounded-[28px] p-2.5 shadow-[0_32px_80px_rgba(0,0,0,0.55)]">
             <Image
-              src="/djalmahenry.jpeg"
+              src="/djalmahenry.png"
               alt="Djalma Henry"
               width={220}
               height={290}
@@ -718,7 +718,7 @@ function ProfileConstellation() {
             />
           </div>
           {/* glow ring */}
-          <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-amber-200/15" />
+          <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-emerald-300/15" />
         </motion.div>
       </div>
 
@@ -785,8 +785,8 @@ function StackFlipCard({
       >
         {/* Front */}
         <div className="flip-card-face glass-panel flex flex-col items-center justify-center gap-4 rounded-[28px] p-6">
-          <div className="flex h-14 w-14 items-center justify-center rounded-full border border-amber-200/20 bg-amber-200/10">
-            <Icon className="h-6 w-6 text-amber-200" />
+          <div className="flex h-14 w-14 items-center justify-center rounded-full border border-emerald-300/20 bg-emerald-300/10">
+            <Icon className="h-6 w-6 text-emerald-300" />
           </div>
           <h3 className="text-xl font-semibold text-white">{group.title}</h3>
           <p className="text-xs uppercase tracking-[0.2em] text-white/36">
@@ -797,8 +797,8 @@ function StackFlipCard({
         {/* Back */}
         <div className="flip-card-face flip-card-back glass-panel flex flex-col rounded-[28px] p-6">
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-amber-200/15 bg-amber-200/10">
-              <Icon className="h-4 w-4 text-amber-200" />
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-emerald-300/15 bg-emerald-300/10">
+              <Icon className="h-4 w-4 text-emerald-300" />
             </div>
             <h3 className="text-base font-semibold text-white">{group.title}</h3>
           </div>
@@ -838,7 +838,7 @@ function ExperienceCard({
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
             <div>
               <h3 className="text-2xl font-semibold text-white">{entry.role}</h3>
-              <p className="mt-1 text-base text-amber-200">{entry.company}</p>
+              <p className="mt-1 text-base text-emerald-300">{entry.company}</p>
             </div>
             <div className="flex flex-wrap gap-2">
               <span className="glass-chip">{entry.employment}</span>
@@ -943,8 +943,8 @@ function RecommendationsSlider({
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-amber-200/15 bg-amber-200/10">
-                      <Quote className="h-5 w-5 text-amber-200" />
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-emerald-300/15 bg-emerald-300/10">
+                      <Quote className="h-5 w-5 text-emerald-300" />
                     </div>
                     <div>
                       <p className="text-base font-medium text-white">{item.name}</p>
@@ -982,7 +982,7 @@ function RecommendationsSlider({
                       </p>
                     </div>
                     <span
-                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-amber-200 transition-transform duration-300 ${
+                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-emerald-300 transition-transform duration-300 ${
                         expandedIndex === index ? "rotate-180" : ""
                       }`}
                     >
@@ -1025,7 +1025,7 @@ function RecommendationsSlider({
               onClick={() => emblaApi?.scrollTo(index)}
               className={`rounded-full border transition-all duration-300 ${
                 selectedIndex === index
-                  ? "h-3 w-10 border-amber-100/80 bg-amber-200 shadow-[0_0_18px_rgba(229,190,120,0.28)]"
+                  ? "h-3 w-10 border-emerald-200/80 bg-emerald-300 shadow-[0_0_18px_rgba(16,185,129,0.28)]"
                   : "h-3 w-3 border-white/35 bg-white/20 hover:border-white/55 hover:bg-white/34"
               }`}
             />
@@ -1119,12 +1119,12 @@ export function ImmersivePortfolioPage() {
                 <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#0d0906]">
                   <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(243,196,113,0.22),_transparent_38%),linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0))]" />
                   <Image
-                    src="/djalmahenry.jpeg"
+                    src="/djalmahenry.png"
                     alt="Djalma Henry"
                     width={720}
                     height={920}
                     priority
-                    className="h-[min(48svh,34rem)] w-full object-cover"
+                    className="h-[min(70svh,34rem)] w-full object-cover"
                   />
                 </div>
               </div>
@@ -1169,8 +1169,8 @@ export function ImmersivePortfolioPage() {
                 return (
                   <div key={item.title} className="glass-surface rounded-[26px] p-5">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-amber-200/15 bg-amber-200/10">
-                        <Icon className="h-5 w-5 text-amber-200" />
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-emerald-300/15 bg-emerald-300/10">
+                        <Icon className="h-5 w-5 text-emerald-300" />
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-white">{item.title}</h3>
@@ -1251,7 +1251,7 @@ export function ImmersivePortfolioPage() {
               className="button-glass gap-2 text-sm"
             >
               <ChevronDown
-                className={`h-4 w-4 text-amber-200 transition-transform duration-300 ${showAllExperiences ? "rotate-180" : ""}`}
+                className={`h-4 w-4 text-emerald-300 transition-transform duration-300 ${showAllExperiences ? "rotate-180" : ""}`}
               />
               {showAllExperiences
                 ? locale === "pt" ? "Ver menos" : "Show less"
@@ -1318,7 +1318,7 @@ export function ImmersivePortfolioPage() {
           {copy.projects.items.map((project, index) => (
             <motion.article
               key={project.title}
-              className="glass-panel group rounded-[34px] p-5 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_32px_80px_rgba(229,190,120,0.1)] sm:p-6"
+              className="glass-panel group rounded-[34px] p-5 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_32px_80px_rgba(16,185,129,0.1)] sm:p-6"
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.15 }}
@@ -1328,7 +1328,7 @@ export function ImmersivePortfolioPage() {
               <Link href={project.href} target="_blank" rel="noopener noreferrer" className="block">
                 <div className="relative overflow-hidden rounded-[28px]">
                   {/* Hover overlay */}
-                  <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(229,190,120,0.04),rgba(255,255,255,0))] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(16,185,129,0.04),rgba(255,255,255,0))] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0))]" />
                   <div className="relative h-[15rem] sm:h-[18rem] lg:h-[22rem]">
                     <Image
@@ -1340,7 +1340,7 @@ export function ImmersivePortfolioPage() {
                   </div>
                   {/* Top-right badge */}
                   <div className="absolute right-4 top-4 z-20 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <span className="glass-chip text-amber-200">
+                    <span className="glass-chip text-emerald-300">
                       <ArrowUpRight className="h-3.5 w-3.5" />
                       {locale === "pt" ? "Ver projeto" : "View project"}
                     </span>
@@ -1348,7 +1348,7 @@ export function ImmersivePortfolioPage() {
                 </div>
                 <div className="mt-6">
                   <div className="flex flex-wrap items-center gap-3">
-                    <h3 className="text-2xl font-semibold text-white transition-colors duration-300 group-hover:text-amber-100">
+                    <h3 className="text-2xl font-semibold text-white transition-colors duration-300 group-hover:text-emerald-100">
                       {project.title}
                     </h3>
                     <span className="glass-chip">{project.stack}</span>
@@ -1383,17 +1383,17 @@ export function ImmersivePortfolioPage() {
               {copy.education.items.map((item) => (
                 <article key={item.institution} className="glass-surface rounded-[28px] p-5">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-amber-200/15 bg-amber-200/10">
-                      <GraduationCap className="h-5 w-5 text-amber-200" />
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-emerald-300/15 bg-emerald-300/10">
+                      <GraduationCap className="h-5 w-5 text-emerald-300" />
                     </div>
                     <div>
                       <p className="text-sm uppercase tracking-[0.28em] text-white/42">{item.period}</p>
                       <h3 className="mt-2 text-lg font-semibold text-white">{item.institution}</h3>
-                      <p className="mt-1 text-sm text-amber-200">{item.title}</p>
+                      <p className="mt-1 text-sm text-emerald-300">{item.title}</p>
                       <div className="mt-4 grid gap-3">
                         {item.details.map((detail) => (
                           <div key={detail} className="glass-strip text-sm leading-6">
-                            <BadgeCheck className="h-4 w-4 shrink-0 text-amber-200" />
+                            <BadgeCheck className="h-4 w-4 shrink-0 text-emerald-300" />
                             <span>{detail}</span>
                           </div>
                         ))}
@@ -1424,7 +1424,7 @@ export function ImmersivePortfolioPage() {
               <div className="mt-4 grid gap-3">
                 {copy.education.certificationHighlights.map((item) => (
                   <div key={item} className="glass-strip text-sm leading-6">
-                    <Award className="h-4 w-4 shrink-0 text-amber-200" />
+                    <Award className="h-4 w-4 shrink-0 text-emerald-300" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -1475,7 +1475,7 @@ export function ImmersivePortfolioPage() {
           variants={fadeInUp}
           transition={{ duration: 0.55, ease: "easeOut" }}
         >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(219,165,97,0.16),transparent_24%),radial-gradient(circle_at_80%_30%,rgba(132,83,43,0.18),transparent_26%),radial-gradient(circle_at_50%_100%,rgba(255,255,255,0.08),transparent_32%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.16),transparent_24%),radial-gradient(circle_at_80%_30%,rgba(6,95,70,0.18),transparent_26%),radial-gradient(circle_at_50%_100%,rgba(255,255,255,0.08),transparent_32%)]" />
           <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div className="max-w-3xl">
               <p className="section-kicker">{copy.contact.eyebrow}</p>

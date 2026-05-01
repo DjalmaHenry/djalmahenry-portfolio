@@ -237,7 +237,7 @@ export function Header() {
                     aria-label={item.name}
                     className={`flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
                       isActive
-                        ? "border-amber-200/40 bg-white text-[#140d08] shadow-[0_8px_24px_rgba(255,255,255,0.18)]"
+                        ? "border-emerald-400/40 bg-white text-[#030f09] shadow-[0_8px_24px_rgba(255,255,255,0.18)]"
                         : "border-white/10 bg-white/5 text-white/58 hover:border-white/18 hover:bg-white/10 hover:text-white"
                     }`}
                   >

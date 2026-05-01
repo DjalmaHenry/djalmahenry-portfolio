@@ -38,6 +38,9 @@ export const metadata: Metadata = {
     siteName: "Djalma Henry",
   },
   generator: "v0.dev",
+  icons: {
+    icon: "/favico.ico",
+  },
 }
 
 export default function RootLayout({
